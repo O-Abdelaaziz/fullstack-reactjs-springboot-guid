@@ -2,6 +2,7 @@ package com.usermanagementsystem.server.security.services;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.usermanagementsystem.server.models.User;
+import lombok.Getter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -10,10 +11,12 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
-
+@Getter
 public class UserDetailsImpl implements UserDetails {
 
     private Long id;
+
+    private String uid;
 
     private String username;
 
@@ -28,9 +31,10 @@ public class UserDetailsImpl implements UserDetails {
 
     private Collection<? extends GrantedAuthority> authorities;
 
-    public UserDetailsImpl(Long id, String username, String email, String password,Boolean isEnabled,Boolean isNotLocked,
+    public UserDetailsImpl(Long id, String uid, String username, String email, String password,Boolean isEnabled,Boolean isNotLocked,
                            Collection<? extends GrantedAuthority> authorities) {
         this.id = id;
+        this.uid=uid;
         this.username = username;
         this.email = email;
         this.password = password;
@@ -46,6 +50,7 @@ public class UserDetailsImpl implements UserDetails {
 
         return new UserDetailsImpl(
                 user.getId(),
+                user.getUid(),
                 user.getUsername(),
                 user.getEmail(),
                 user.getPassword(),
