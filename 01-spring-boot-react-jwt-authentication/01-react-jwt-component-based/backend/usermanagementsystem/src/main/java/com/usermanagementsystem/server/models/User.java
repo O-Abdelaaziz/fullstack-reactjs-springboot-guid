@@ -39,7 +39,7 @@ public class User extends BaseEntity {
     private String password;
 
     @Column(name = "is_enabled")
-    private Boolean isActive;
+    private Boolean isEnabled;
 
     @Column(name = "is_not_locked")
     private Boolean isNotLocked;
