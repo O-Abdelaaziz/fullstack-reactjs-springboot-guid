@@ -11,8 +11,9 @@ class BoardUserComponent extends Component {
     }
 
     componentDidMount() {
-        AuthenticationUserService.getUserBoard().then(
+        AuthenticationUserService.getUserContent().then(
             response => {
+                console.log(response);
                 this.setState({
                     content: response.data
                 });

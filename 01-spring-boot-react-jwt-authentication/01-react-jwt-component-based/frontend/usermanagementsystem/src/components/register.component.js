@@ -4,6 +4,7 @@ import Input from "react-validation/build/input";
 import CheckButton from "react-validation/build/button";
 import { email, required, validatePassword, validateUsername } from '../helper/validators';
 import AuthenticationService from '../services/authentication.service';
+import { Link } from 'react-router-dom';
 
 class RegisterComponent extends Component {
 
@@ -67,6 +68,8 @@ class RegisterComponent extends Component {
                         message: response.data.message,
                         successful: true
                     });
+                    this.props.history.push("/login");
+                    window.location.reload();
                 },
                 error => {
                     const responseMessage =
@@ -144,6 +147,10 @@ class RegisterComponent extends Component {
 
                                 <div className="form-group text-center mt-2">
                                     <button className="btn btn-primary btn-block">Sign Up</button>
+                                </div>
+
+                                <div className="form-group text-center mt-2">
+                                    <Link className="text text-primary" to="/login" role="button"> or Signin</Link>
                                 </div>
                             </div>
                         )}

@@ -4,6 +4,7 @@ import Input from 'react-validation/build/input';
 import CheckButton from "react-validation/build/button";
 import { required } from '../helper/validators';
 import AuthenticationService from '../services/authentication.service';
+import { Link } from 'react-router-dom';
 
 class LoginComponent extends Component {
     constructor(props) {
@@ -39,33 +40,35 @@ class LoginComponent extends Component {
 
         this.form.validateAll();
 
-        if(this.checkBtn.context._errors.length===0){
-            const username =this.state.username;
-            const password=this.state.password;
-            AuthenticationService.login(username,password)
-            .then(()=>{
-                console.log("login successfully!");
-            },
-            (error)=>{
-                const responseMessage=
-                (error.response &&
-                    error.response.data &&
-                    error.response.data.message)||
-                    error.message||
-                    error.toString();
-                this.setState({
-                    loading:false,
-                    message:responseMessage
-                });    
-            }
-            );
-        }else{
+        if (this.checkBtn.context._errors.length === 0) {
+            const username = this.state.username;
+            const password = this.state.password;
+            AuthenticationService.login(username, password)
+                .then(() => {
+                    console.log("login successfully!");
+                    this.props.history.push("/profile");
+                    window.location.reload();
+                },
+                    (error) => {
+                        const responseMessage =
+                            (error.response &&
+                                error.response.data &&
+                                error.response.data.message) ||
+                            error.message ||
+                            error.toString();
+                        this.setState({
+                            loading: false,
+                            message: responseMessage
+                        });
+                    }
+                );
+        } else {
             this.setState({
-                loading:false
+                loading: false
             });
         }
 
-     }
+    }
 
     render() {
         return (
@@ -77,15 +80,15 @@ class LoginComponent extends Component {
                         className="profile-img-card"
                     />
 
-                    <Form onSubmit={this.onSubmitFormHandler} ref={c=>{this.form=c}}>
+                    <Form onSubmit={this.onSubmitFormHandler} ref={c => { this.form = c }}>
                         <div className="form-group">
                             <label htmlFor="username">Username:</label>
-                            <Input id="username" type="text" className="form-control" name="username" value={this.state.username} onChange={this.onChangeUsernameHandler} validations={[required]}/>
+                            <Input id="username" type="text" className="form-control" name="username" value={this.state.username} onChange={this.onChangeUsernameHandler} validations={[required]} />
                         </div>
 
                         <div className="form-group">
                             <label htmlFor="password">Password:</label>
-                            <Input id="password" type="password" className="form-control" name="password" value={this.state.password} onChange={this.onChangePasswordHandler}  validations={[required]}/>
+                            <Input id="password" type="password" className="form-control" name="password" value={this.state.password} onChange={this.onChangePasswordHandler} validations={[required]} />
                         </div>
 
                         <div className="form-group text-center mt-2">
@@ -94,6 +97,10 @@ class LoginComponent extends Component {
                                 {this.state.loading && <span className="spinner-border spinner-border-sm"></span>}
                                 <span>Login</span>
                             </button>
+                        </div>
+
+                        <div className="form-group text-center mt-2">
+                            <Link className="text text-primary" to="/register" role="button"> or Signup</Link>
                         </div>
 
                         {this.state.message && <div className="form-group mt-3">

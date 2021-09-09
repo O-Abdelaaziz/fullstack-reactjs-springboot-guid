@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from 'react'
+import { Link } from 'react-router-dom';
 import AuthenticationService from '../services/authentication.service';
 class ProfileComponent extends Component {
     constructor(props) {
@@ -37,7 +38,7 @@ class ProfileComponent extends Component {
                         {currentUser.roles &&
                             currentUser.roles.map((role, index) => <li key={index}>{role}</li>)}
                     </ul>
-                    <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
+                    <Link class="btn btn-primary btn-lg" to="/logout" role="button">logout</Link>
                 </div>
             </Fragment>
         );
