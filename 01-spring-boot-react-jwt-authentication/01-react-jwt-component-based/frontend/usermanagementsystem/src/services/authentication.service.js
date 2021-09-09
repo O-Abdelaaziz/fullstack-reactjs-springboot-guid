@@ -27,8 +27,7 @@ class AuthenticationService {
             password
         })
             .then((response) => {
-                console.log(response.data);
-                return (JSON.stringify(response.data));
+                return (response);
             })
             .catch((error) => {
                 console.error(error);
