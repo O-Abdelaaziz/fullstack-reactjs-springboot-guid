@@ -4,19 +4,19 @@ import AuthenticationHeader from "./authentication.header";
 class AuthenticationUserService {
 
     getPublicContent() {
-        return AxiosApi.get('all');
+        return AxiosApi.get('test/all');
     }
 
     getUserContent() {
-        return AxiosApi.get('user', { headers: AuthenticationHeader() });
+        return AxiosApi.get('test/user', { headers: AuthenticationHeader() });
     }
 
     getModeratorContent() {
-        return AxiosApi.get('mod', { headers: AuthenticationHeader() });
+        return AxiosApi.get('test/mod', { headers: AuthenticationHeader() });
     }
 
     getAdminModeratorContent() {
-        return AxiosApi.get('admin', { headers: AuthenticationHeader() });
+        return AxiosApi.get('test/admin', { headers: AuthenticationHeader() });
     }
 }
 
