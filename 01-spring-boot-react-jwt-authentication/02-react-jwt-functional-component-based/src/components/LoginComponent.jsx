@@ -30,7 +30,7 @@ const LoginComponent = (props) => {
         if(checkBoxRef.current.context._errors.length ===0){
             authenticationService.login(username, password).then(
                 () => {
-                  //props.history.push("/profile");
+                  props.history.push("/profile");
                   window.location.reload();
                 },
                 (error) => {

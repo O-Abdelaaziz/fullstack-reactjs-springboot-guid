@@ -40,6 +40,8 @@ const RegisterComponent = (props) => {
             (response) => {
               setMessage(response.data.message);
               setSuccessful(true);
+              this.props.history.push("/login");
+              window.location.reload();
             },
             (error) => {
               const resMessage =
