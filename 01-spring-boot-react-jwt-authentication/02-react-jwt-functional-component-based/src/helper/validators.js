@@ -8,7 +8,7 @@ export const required = (value) => {
     }
 };
 
-export const email = value => {
+export const validateEmail = value => {
     if (!isEmail(value)) {
         return (
             <div className="alert alert-danger mt-2" role="alert">
