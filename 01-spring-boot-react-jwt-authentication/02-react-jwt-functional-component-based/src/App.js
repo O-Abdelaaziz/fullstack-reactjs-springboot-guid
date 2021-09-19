@@ -1,4 +1,5 @@
 import './App.css';
+import BoardUserComponent from './components/BoardUserComponent';
 import HomeComponent from './components/HomeComponent';
 import LoginComponent from './components/LoginComponent';
 import ProfileComponent from './components/ProfileComponent';
@@ -10,7 +11,8 @@ function App() {
       {/* <LoginComponent /> */}
       {/* <RegisterComponent /> */}
       {/* <ProfileComponent /> */}
-      <HomeComponent />
+      {/* <HomeComponent /> */}
+      <BoardUserComponent />
     </div>
   );
 }
